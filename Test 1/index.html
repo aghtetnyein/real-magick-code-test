@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Test 1 | Show hide element</title>
+  </head>
+  <body>
+    <section class="my-10 mx-4 md:mx-20 space-y-8">
+      <button
+        type="button"
+        id="show-hide-button"
+        class="bg-[#2b2d42] text-white rounded-sm py-2 px-4 text-sm"
+      >
+        Hide Hello World
+      </button>
+      <div
+        id="show-hide-element"
+        class="font-bold text-white bg-[#2b2d42] text-center h-40 flex items-center justify-center rounded-sm"
+      >
+        Hello world
+      </div>
+    </section>
+
+    <script>
+      const showHideButton = document.getElementById("show-hide-button");
+      const showHideElement = document.getElementById("show-hide-element");
+
+      showHideButton.addEventListener("click", () => {
+        showHideElement.classList.toggle("hidden");
+        if (showHideElement.classList.contains("hidden"))
+          showHideButton.innerText = "Show Hello World";
+        else showHideButton.innerText = "Hide Hello World";
+      });
+    </script>
+  </body>
+</html>

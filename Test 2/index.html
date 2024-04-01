@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Test 2 | Responsive navigation</title>
+  </head>
+  <body>
+    <!-- desktop nav -->
+    <nav
+      class="hidden w-full h-[75px] items-center justify-between px-20 lg:flex bg-[#2b2d42]"
+    >
+      <p class="font-bold text-lg text-white">Logo</p>
+      <ul class="flex items-start flex-shrink-0 gap-6 py-3">
+        <li
+          class="hover:cursor-pointer hover:text-white px-3 py-1 text-gray-300 font-normal text-sm"
+        >
+          <a href="#home">Home</a>
+        </li>
+        <li
+          class="hover:cursor-pointer hover:text-white px-3 py-1 text-gray-300 font-normal text-sm"
+        >
+          <a href="#products">Products</a>
+        </li>
+        <li
+          class="hover:cursor-pointer hover:text-white px-3 py-1 text-gray-300 font-normal text-sm"
+        >
+          <a href="#info">Info</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- mobile nav -->
+    <nav class="lg:hidden">
+      <div
+        class="fixed top-0 right-0 flex w-screen bg-[#2b2d42] items-center justify-between h-[75px] px-4"
+      >
+        <p class="font-bold text-lg text-white">Logo</p>
+        <svg
+          id="menu"
+          xmlns="http://www.w3.org/2000/svg"
+          width="512"
+          height="512"
+          enable-background="new 0 0 512 512"
+          viewBox="0 0 512 512"
+          class="w-6 h-6 stroke-white"
+        >
+          <line
+            x1="26.7"
+            x2="486.25"
+            y1="105.643"
+            y2="105.643"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="2.613"
+            stroke-width="13.417"
+          ></line>
+          <line
+            x1="26.7"
+            x2="486.25"
+            y1="256.511"
+            y2="256.511"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="2.613"
+            stroke-width="13.417"
+          ></line>
+          <line
+            x1="26.7"
+            x2="486.25"
+            y1="407.312"
+            y2="407.312"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-miterlimit="2.613"
+            stroke-width="13.417"
+          ></line>
+        </svg>
+      </div>
+      <div
+        id="mobile-nav-overlay"
+        class="fixed top-0 right-0 h-screen w-screen space-y-8 transition duration-300 ease-in-out bg-[#2b2d42] translate-x-[150%]"
+      >
+        <div
+          class="flex w-full bg-[#2b2d42] items-center justify-end p-4 h-[75px]"
+        >
+          <svg
+            id="cross"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 fill-white"
+          >
+            <path
+              d="m6.4 18.308l-.708-.708l5.6-5.6l-5.6-5.6l.708-.708l5.6 5.6l5.6-5.6l.708.708l-5.6 5.6l5.6 5.6l-.708.708l-5.6-5.6l-5.6 5.6Z"
+            ></path>
+          </svg>
+        </div>
+        <ul class="flex flex-col items-start flex-shrink-0 gap-4">
+          <li
+            class="hover:cursor-pointer hover:text-white px-3 py-1 text-gray-300 font-normal text-sm"
+          >
+            <a href="#home">Home</a>
+          </li>
+          <li
+            class="hover:cursor-pointer hover:text-white px-3 py-1 text-gray-300 font-normal text-sm"
+          >
+            <a href="#products">Products</a>
+          </li>
+          <li
+            class="hover:cursor-pointer hover:text-white px-3 py-1 text-gray-300 font-normal text-sm"
+          >
+            <a href="#info">Info</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <script>
+      const mobileNavOverlay = document.querySelector("#mobile-nav-overlay");
+
+      // side bar open-close
+      document.getElementById("menu").addEventListener("click", () => {
+        mobileNavOverlay.classList.remove("translate-x-[150%]");
+      });
+
+      document.getElementById("cross").addEventListener("click", () => {
+        mobileNavOverlay.classList.add("translate-x-[150%]");
+      });
+    </script>
+  </body>
+</html>

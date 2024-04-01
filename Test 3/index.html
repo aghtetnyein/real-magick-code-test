@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Test 3 | Ajax API Call</title>
+  </head>
+  <body>
+    <section class="space-y-8">
+      <div
+        class="border-b border-[#2b2d42] px-4 md:px-20 py-4 z-10 fixed top-0 w-screen bg-white"
+      >
+        <button
+          id="data-fetch-button"
+          type="button"
+          class="bg-[#2b2d42] text-white rounded-sm py-2 px-4 text-sm"
+        >
+          Fetch Data
+        </button>
+      </div>
+
+      <div
+        id="loading"
+        class="w-screen h-[90vh] hidden items-center justify-center"
+      >
+        <h1 className="text-sm">Loading...</h1>
+      </div>
+
+      <ul
+        id="data-list"
+        class="mx-4 md:mx-20 py-14 grid md:grid-cols-2 lg:grid-cols-3 gap-4"
+      ></ul>
+    </section>
+
+    <script>
+      document
+        .getElementById("data-fetch-button")
+        .addEventListener("click", fetchData);
+
+      const loadingText = document.getElementById("loading");
+
+      function fetchData() {
+        loadingText.classList.remove("hidden");
+        loadingText.classList.add("flex");
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/users", true);
+
+        xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            loadingText.classList.add("hidden");
+            loadingText.classList.remove("flex");
+
+            var data = JSON.parse(xhr.responseText);
+            displayData(data);
+          } else {
+            console.error("Request failed with status:", xhr.status);
+          }
+        };
+
+        xhr.send();
+      }
+
+      function displayData(data) {
+        var dataList = document.getElementById("data-list");
+
+        dataList.innerHTML = "";
+
+        data.forEach(function (item) {
+          var listItem = document.createElement("li");
+          listItem.classList.add(
+            "p-4",
+            "border",
+            "border-[#2b2d42]",
+            "rounded-md",
+            "flex",
+            "flex-col",
+            "justify-between"
+          );
+
+          const listTitle = document.createElement("p");
+          listTitle.classList.add("text-xl", "font-bold", "mb-4");
+          listTitle.textContent = item.name;
+          listItem.appendChild(listTitle);
+
+          const listEmail = document.createElement("p");
+          listEmail.classList.add("text-sm");
+          listEmail.textContent = item.email;
+          listItem.appendChild(listEmail);
+
+          const listPhone = document.createElement("p");
+          listPhone.classList.add("text-sm");
+          listPhone.textContent = item.phone;
+          listItem.appendChild(listPhone);
+
+          dataList.appendChild(listItem);
+        });
+      }
+    </script>
+  </body>
+</html>
